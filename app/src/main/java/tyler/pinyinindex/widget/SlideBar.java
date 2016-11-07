@@ -32,6 +32,7 @@ public class SlideBar extends View {
     private TextView mTv_toast;
     private RecyclerView mRvList;
 
+
     public SlideBar(Context context) {
         this(context, null);
     }
