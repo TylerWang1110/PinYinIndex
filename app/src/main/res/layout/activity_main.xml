@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context="tyler.pinyinindex.MainActivity">
 
-    <tyler.pinyinindex.widget.PinYinIndexView
+    <tyler.pinyinindex.pinyin.PinYinIndexView
         android:layout_width="match_parent"
         android:id="@+id/pinyin_view"
         android:layout_height="match_parent">
 
-    </tyler.pinyinindex.widget.PinYinIndexView>
+    </tyler.pinyinindex.pinyin.PinYinIndexView>
 </RelativeLayout>

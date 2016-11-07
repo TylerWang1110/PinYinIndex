@@ -1,4 +1,4 @@
-package tyler.pinyinindex.widget;
+package tyler.pinyinindex.pinyin;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import tyler.pinyinindex.R;
 import tyler.pinyinindex.util.DensityUtils;
 
@@ -22,16 +24,17 @@ import tyler.pinyinindex.util.DensityUtils;
  */
 public class SlideBar extends View {
 
-    public static final String[] sLetters = {"#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
-            "L", "M",
-            "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    public static final char[] sLetters = {'#' , 'A' , 'B' , 'C' , 'D' , 'E' , 'F' , 'G' , 'H' , 'I' , 'J'
+            , 'K' ,
+            'L' , 'M' ,
+            'N' , 'O' , 'P' , 'Q' , 'R' , 'S' , 'T' , 'U' , 'V' , 'W' , 'X' , 'Y' , 'Z'};
+
     private int mMeasuredHeight;
     private int mMeasuredWidth;
     private Paint mPaint;
     private float mHeight;
     private TextView mTv_toast;
     private RecyclerView mRvList;
-
 
     public SlideBar(Context context) {
         this(context, null);
@@ -66,7 +69,7 @@ public class SlideBar extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         for (int i = 0; i < sLetters.length; i++) {
-            canvas.drawText(sLetters[i], mMeasuredWidth / 2, mHeight * (i + 1), mPaint);
+            canvas.drawText(sLetters[i] + "", mMeasuredWidth / 2, mHeight * (i + 1), mPaint);
         }
     }
 
@@ -119,8 +122,22 @@ public class SlideBar extends View {
         } else if (index > sLetters.length - 1) {
             index = sLetters.length - 1;
         }
-        String sLetter = sLetters[index];
-        mTv_toast.setText(sLetter);
+        char sLetter = sLetters[index];
+        mTv_toast.setText(sLetter + "");
         mTv_toast.setVisibility(VISIBLE);
+
+        PinyinAdapter adapter = (PinyinAdapter) mRvList.getAdapter();
+        ArrayList<Person> persons = (ArrayList<Person>) adapter.getShowItems();
+        for (int i = 0; i < persons.size(); i++) {
+            System.out.println(persons.get(i).getLetter() + "     ---    " + sLetter );
+            if (persons.get(i).getLetter() == sLetter) {
+                mRvList.scrollToPosition(i);
+                return;
+            }
+        }
+    }
+
+    public void bindRecylerView(RecyclerView rvList) {
+        this.mRvList = rvList;
     }
 }

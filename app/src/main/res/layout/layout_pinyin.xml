@@ -29,7 +29,7 @@
         android:textSize="30sp"
         android:visibility="gone"/>
 
-    <tyler.pinyinindex.widget.SlideBar
+    <tyler.pinyinindex.pinyin.SlideBar
         android:id="@+id/slidebar"
         android:layout_width="25dp"
         android:layout_height="match_parent"
