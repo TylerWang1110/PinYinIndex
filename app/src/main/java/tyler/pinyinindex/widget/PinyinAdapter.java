@@ -41,9 +41,11 @@ public class PinyinAdapter extends RecyclerView.Adapter<PinyinAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+
         private TextView tvName;
 
         public ViewHolder(View itemView) {
+
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tv_name);
         }
